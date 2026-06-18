@@ -14,7 +14,7 @@ export default function SigninPage() {
     const router = useRouter();
 
     const searchParams = useSearchParams();
-    const redirectTo = searchParams.get("redirect") || "/dashboard";
+    const redirectTo = searchParams.get("redirect") || "/";
 
     // UI States
     const [isVisible, setIsVisible] = useState(false);

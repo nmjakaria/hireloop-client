@@ -104,12 +104,62 @@ export default function PostJobForm({ company }) {
                     <div className="mt-4 inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-zinc-400">
                         <Briefcase size={14} className="text-zinc-500" />
                         Posting as: <span className="font-semibold text-zinc-300">{company.name}</span>
-                        <span className="text-emerald-500 font-medium bg-emerald-950/30 px-1.5 py-0.5 rounded border border-emerald-900/50">Approved</span>
+                        <span className="text-emerald-500 font-medium bg-emerald-950/30 px-1.5 py-0.5 rounded border border-emerald-900/50">{company.status}</span>
                     </div>
                 </div>
 
+                {/* {company.status !== "Approved" && (
+                    <div className="flex items-center justify-center min-h-[300px]">
+                        <div className="max-w-md w-full rounded-xl border border-amber-200 bg-amber-50 p-6 text-center shadow-sm">
+                            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-100">
+                                ⏳
+                            </div>
+
+                            <h2 className="text-lg font-semibold text-amber-900">
+                                Approval Pending
+                            </h2>
+
+                            <p className="mt-2 text-sm text-amber-700">
+                                Your company account is currently under review. Please wait until an
+                                administrator approves your account.
+                            </p>
+
+                            <div className="mt-4 rounded-lg bg-white px-4 py-3 text-sm text-gray-600 border border-amber-100">
+                                You will be able to access all company features once your account has
+                                been approved.
+                            </div>
+                        </div>
+                    </div>
+                )} */}
+                {company.status !== "Approved" && (
+                    <div className="flex min-h-screen items-center justify-center">
+                        <div className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-lg">
+                            <div className="mb-6 text-center">
+                                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100 text-3xl">
+                                    ⏳
+                                </div>
+
+                                <h1 className="mt-4 text-2xl font-bold text-gray-900">
+                                    Approval Required
+                                </h1>
+
+                                <p className="mt-2 text-gray-600">
+                                    Your company profile is awaiting approval from our team.
+                                </p>
+                            </div>
+
+                            <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+                                <p className="text-sm text-yellow-800">
+                                    Please wait while we review your information. You will gain access to
+                                    post jobs and manage applicants once your account is approved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Hero UI Main Form Handler */}
-                <Form onSubmit={handleSubmit} className="space-y-8" validationErrors={errors} validationBehavior='aria'>
+                {company.status === 'Approved' && <Form onSubmit={handleSubmit} className="space-y-8" validationErrors={errors} validationBehavior='aria'>
 
                     {/* SECTION 1: Job Information */}
                     <Fieldset className="space-y-6 w-full">
@@ -283,7 +333,7 @@ export default function PostJobForm({ company }) {
                             Post Job
                         </Button>
                     </div>
-                </Form>
+                </Form>}
             </div>
         </div>
     );
